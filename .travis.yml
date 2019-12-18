@@ -22,3 +22,16 @@ after_success:
   - docker push ipuskaric12/multi-nginx 
   - docker push ipuskaric12/multi-server
   - docker push ipuskaric12/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-938318033206
+  bucket_path: docker-multi
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  on:
+    branch: master
